@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %}
+<!-- custum css -->
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/store.css' %}" />
+{% endblock style %}
+<!-- ------------- Header -------------  -->
+{% block header %}
+<header>
+  <div class="nave">{% include 'nav.html' %}</div>
+</header>
+{% endblock header %}
+<!-- ------------- Body -------------  -->
+{% block body %}
+<div class="container">
+  <div class="categores_carocel d-flex my-5 p-3">
+    <a href="">
+      <div class="card" style="width: 18rem; height: 22rem">
+        <img
+          src=" {% static 'images/shoes.png ' %}"
+          class="card-img-top"
+          style="width: 100%"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title h2">shoes</h5>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+{% endblock body %}
+<!-- ------------- Footer -------------  -->
+{% block footer %} {% include 'footer.html' %} {% endblock footer %}
+<!-- custum js -->
+{% block script %} {% endblock script %}
