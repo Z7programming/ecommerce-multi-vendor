@@ -5,7 +5,7 @@ header {
   background-position: center;
   background-repeat: no-repeat;
   object-fit: cover;
-  box-shadow: 0px 5px 50px 30px #00568ba3;
+  box-shadow: 0px -20px 70px 13px #00568ba3;
   transition: 0.5s;
 }
 /* // Medium devices (tablets, 768px and up) */
@@ -20,4 +20,47 @@ header {
     height: 90vh;
     object-fit: fill;
   }
+}
+
+/*      for products sections      */
+.cate_sections {
+  background: #eee;
+  height: 350px;
+  overflow: hidden;
+}
+.cate_sections .section_header {
+  height: 40px;
+  background: #fff;
+  padding: 3px 0 0 20px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.cate_sections .main {
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.cate_sections .main article {
+  width: 250px;
+  overflow: inherit;
+  height: 301px;
+  transition: 0.3s;
+}
+.cate_sections .main article:hover {
+  transform: translateY(-5px);
+}
+.cate_sections .main article .img {
+  width: 250px;
+  height: 250px;
+  border-radius: 5px 5px 0 0;
+  overflow: hidden;
+}
+.cate_sections .main article .img img {
+  width: 100%;
+}
+.cate_sections .main article .info {
+  background: white;
+  border-radius: 0 0 5px 5px;
+  padding: 3px;
+  height: 50px;
 }
