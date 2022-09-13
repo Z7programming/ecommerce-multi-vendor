@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'vendor_dach',
     'admin_dach',
     # --- installed apps ---
+    'accounts',
+    "crispy_forms",
+    "crispy_bootstrap5",
     # --- project apps ---
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,8 +48,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+LOGIN_REDIRECT_URL = '/'
+
+
+# in views befour any def must be login 
+# from django.contrib.auth.decorators import login_required
+
 
 MIDDLEWARE = [
+ 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -128,7 +140,6 @@ STATICFILES_DIRS = [
     '/var/www/static/',
 ]
 
-
 # Media files (Images, documents ...)
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = '/media/'
@@ -137,3 +148,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+
+# test send emil to my condole
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

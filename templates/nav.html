@@ -34,8 +34,30 @@
         />
       </form>
       <div class="text-end">
-        <button type="button" class="btn btn-outline-light me-2">Login</button>
-        <button type="button" class="btn btn-warning">Sign-up</button>
+        {% if user %}
+        <button type="button" class="btn btn-outline-light me-2">
+          {{ user }}
+        </button>
+        <a
+          href="{% url 'logout'%}"
+          type="button"
+          class="btn btn-outline-light me-2"
+          >Logout</a
+        >
+        {% else %}
+        <a
+          href="{% url 'login'%}"
+          type="button"
+          class="btn btn-outline-light me-2"
+          >Login</a
+        >
+        {% endif %}
+        <a
+          href=" {% url 'accounts:sign_up' %} "
+          type="button"
+          class="btn btn-warning"
+          >Sign-up</a
+        >
       </div>
     </div>
   </div>

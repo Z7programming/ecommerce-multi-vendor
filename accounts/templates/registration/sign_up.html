@@ -1,0 +1,32 @@
+{% extends "base_generic.html" %}
+<!-- --------------------------------- -->
+{% load crispy_forms_tags %} {% block body %}
+<div class="container">
+  {% block content %}
+  <!-- --------------------------------- -->
+
+  <!-- -->
+  <form method="post" autocomplete="off" class="form-control">
+    {% csrf_token %}
+    <!-- <input type="text" name="username" class="form-control" />
+    email :
+    <input type="email" name="email" class="form-control" />
+    password1 :
+    <input type="password" name="password1" class="form-control" /> -->
+
+    {{form.username|as_crispy_field }} {{form.email|as_crispy_field }}
+    {{form.password1|as_crispy_field }} {{form.password2 |as_crispy_field }}
+
+    <input class="btn btn-primary w-100" type="submit" value="sign_up" />
+  </form>
+
+  {# action to login page#}
+  <p>
+    <a class="btn btn-secondary my-2 mx-auto" href="{% url 'login' %}"
+      >login if have an account</a
+    >
+  </p>
+
+  {% endblock %}
+</div>
+{% endblock body %}
