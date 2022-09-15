@@ -2,6 +2,10 @@
 <!-- custum css -->
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/store.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+/>
 {% endblock style %}
 <!-- ------------- Header -------------  -->
 {% block header %}
@@ -12,23 +16,52 @@
 <!-- ------------- Body -------------  -->
 {% block body %}
 <div class="container">
-  <div class="categores_carocel d-flex my-5 p-3">
-    {% for categ in categories %}
-    <a href=" {% url 'Home:category_show' categ.id %} ">
-      <div class="card" style="width: 18rem; height: 22rem">
-        <img
-          src=" {{ categ.logo.url }}"
-          class="card-img-top"
-          style="width: 100%"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title h2">{{ categ.titel }}</h5>
+  <!-- -------------- S ----- categories carousel ----------------  -->
+
+  <div class="row my-3">
+    <div class="col-12">
+      <div id="events" class="event-list owl-carousel owl-loaded owl-drag">
+        <div class="owl-stage-outer">
+          <div class="owl-stage d-flex">
+            {% for categ in categories %}
+            <div class="owl-item" style="width: 374.5px">
+              <a href=" {% url 'Home:category_show' categ.id %} ">
+                <div class="event-item">
+                  <div class="img">
+                    <img
+                      src="{{ categ.logo.url }}"
+                      class="img-thumbnail"
+                      style="width: 100%"
+                    />
+                  </div>
+                  <div class="titel">
+                    <p class=" ">{{ categ.titel }}</p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
         </div>
+        <div class="owl-nav">
+          <button type="button" role="presentation" class="owl-prev">
+            <div class="owl-nav-wrapper bg-soft-primary">
+              <i class="fa-solid fa-chevron-left"></i>
+            </div>
+          </button>
+          <button type="button" role="presentation" class="owl-next">
+            <div class="owl-nav-wrapper bg-soft-primary">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </button>
+        </div>
+        <div class="owl-dots disabled"></div>
       </div>
-    </a>
-    {% endfor %}
+    </div>
   </div>
+
+  <!-- -------------- E ----- categories carousel ----------------  -->
+
   <!-- products By categores  -->
   {% for cat in categories %}
   <section class="cate_sections">
@@ -69,4 +102,41 @@
 <!-- ------------- Footer -------------  -->
 {% block footer %} {% include 'footer.html' %} {% endblock footer %}
 <!-- custum js -->
-{% block script %} {% endblock script %}
+{% block script %}
+<script>
+  (function ($) {
+    "use strict";
+    $(function () {
+      //Event carousel
+      $("#events").owlCarousel({
+        loop: true,
+        margin: 0,
+        autoPlay: 3000,
+        responsive: {
+          0: {
+            items: 1,
+          },
+          768: {
+            items: 2,
+          },
+          979: {
+            items: 3,
+          },
+          1199: {
+            items: 4,
+          },
+        },
+        singleItem: false,
+        dots: false,
+        nav: true,
+        navText: ["", ""],
+      });
+      $(".btn-event-show").collapse();
+      //Events: Tooltip
+      $(".event-user").tooltip({ boundary: "window" });
+      feather.replace();
+    });
+  })(jQuery);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+{% endblock script %}

@@ -1,1 +1,176 @@
-{% extends 'base.html' %} {% block body %} {% endblock body %}
+{% extends 'base.html' %} {% load crispy_forms_tags %}
+<!-- ------------- -->
+{% block body %}
+
+<!-- ------------- -->
+
+<div class="container p-3">
+  <div class="row flex-lg-nowrap">
+    <div class="col">
+      <div class="row">
+        <!-- ---------- middel---------  -->
+        <div class="col mb-3">
+          <div class="card">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="e-profile">
+                  <div class="row">
+                    <div class="col-12 col-sm-auto mb-3">
+                      <div class="mx-auto" style="width: 140px; height: 140px">
+                        <div
+                          class="d-flex justify-content-center align-items-center rounded overflow-hidden"
+                        >
+                          {% if prof.photo %}
+                          <img src="{{ prof.photo.url }}" style="width: 100%" />
+                          {% else %}
+                          <img
+                            src="https://www.innovaxn.eu/wp-content/uploads/blank-profile-picture-973460_1280.png"
+                            style="width: 100%"
+                          />
+                          {% endif %}
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="col d-flex flex-column flex-sm-row justify-content-between mb-3"
+                    >
+                      <div class="text-center text-sm-left mb-2 mb-sm-0">
+                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">
+                          {{prof.user.first_name}} {{prof.user.last_name}}
+                        </h4>
+                        <p class="mb-0">@{{ prof.user }}</p>
+                        {{formprofile.photo |as_crispy_field}}
+                        <div class="mt-2">
+                          <label
+                            for="id_photo"
+                            class="btn btn-primary"
+                            type="button"
+                          >
+                            <i class="fa fa-fw fa-camera"></i>
+                            <span>Change photo</span>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="text-center text-sm-right">
+                        <div class="text-muted">
+                          <small>
+                            <!-- -------------- -->
+                            Joined {{ prof.user.date_joined| date:'d M Y'}}
+                            <!-- -------------- -->
+                          </small>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                      <a href="" class="active nav-link">Informations</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content pt-3">
+                    <div class="tab-pane active">
+                      <div class="row">
+                        <div class="col">
+                          <div class="row">
+                            <div class="col">
+                              {{formprofile.phone | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              {{formuser.first_name | as_crispy_field}}
+                            </div>
+                            <div class="col">
+                              {{formuser.last_name | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              {{formprofile.contry | as_crispy_field}}
+                            </div>
+                            <div class="col">
+                              {{formprofile.city | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              {{formprofile.state | as_crispy_field}}
+                            </div>
+                            <div class="col">
+                              {{formprofile.zipcode | as_crispy_field}}
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col">
+                              {{formprofile.street |as_crispy_field}}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col d-flex justify-content-end">
+                          <input
+                            class="btn btn-primary"
+                            type="submit"
+                            value="Save Changes"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- ---------- middel---------  -->
+        <div class="col-12 col-md-3 mb-3">
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text w-25">spend</span>
+                <div class="form-control">{{ prof.spend }}</div>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-dollar-sign"></i
+                ></span>
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text w-25">sall</span>
+                <div class="form-control">{{ prof.sall_count }}</div>
+                <span class="input-group-text"
+                  ><i class="fa-solid fa-cart-shopping"></i
+                ></span>
+              </div>
+            </div>
+          </div>
+          <!-- ----------------  -->
+          <div class="card mb-3">
+            <div class="card-body">
+              <div class="px-xl-3">
+                <a
+                  href=" {% url 'logout' %} "
+                  class="btn btn-block btn-secondary"
+                >
+                  <i class="fa fa-sign-out"></i>
+                  <span>Logout</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- ----------------  -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ------------- -->
+{% endblock body %}
+<!-- ------------- -->
+{% block footer %}
+<hr />
+<!-- ------------- -->
+{% include 'footer.html' %}
+<!-- ------------- -->
+{% endblock footer %}

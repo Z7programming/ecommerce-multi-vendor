@@ -1,6 +1,51 @@
 {% extends "base_generic.html" %} {% load crispy_forms_tags %}
 <!-- --------------------------------- -->
 {% block content %}
+<style>
+  body {
+    margin-top: 20px;
+    background: #f6f9fc;
+  }
+  .account-block {
+    padding: 0;
+    background-image: url(https://bootdey.com/img/Content/bg1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+    position: relative;
+  }
+  .account-block .overlay {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .account-block .account-testimonial {
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    margin: 0 auto;
+    padding: 0 1.75rem;
+    bottom: 3rem;
+    left: 0;
+    right: 0;
+  }
+
+  .text-theme {
+    color: #5369f8 !important;
+  }
+
+  .btn-theme {
+    background-color: #5369f8;
+    border-color: #5369f8;
+    color: #fff;
+  }
+</style>
 <div class="container">
   <!-- --------------------------------- -->
   {% if form.errors %}
@@ -56,76 +101,74 @@
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p> -->
 
   <!-- ------------------------------------------------------------------------------ -->
+  <div id="main-wrapper" class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <div class="card border-0">
+          <div class="card-body p-0">
+            <div class="row no-gutters">
+              <div class="col-lg-6">
+                <div class="p-5">
+                  <div class="mb-5">
+                    <h3 class="h4 font-weight-bold text-theme">Login</h3>
+                  </div>
 
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card-group mb-0">
-        <div class="card p-4">
-          <div class="card-body">
-            <h1>Login</h1>
-            <p class="text-muted">Sign In to your account</p>
-            <form method="post" action="{% url 'login' %}">
-              {% csrf_token %}
-              <div class="input-group mb-3">
-                <span class="input-group-addon"
-                  ><i class="fa fa-user"></i
-                ></span>
-                {{ form.username | as_crispy_field }}
-                <!-- <input type="text" class="form-control" placeholder="Username"> -->
-              </div>
-              <div class="input-group mb-4">
-                <span class="input-group-addon"
-                  ><i class="fa fa-lock"></i
-                ></span>
-                {{ form.password| as_crispy_field }}
-                <!-- <input type="password" class="form-control" placeholder="Password"> -->
-              </div>
-              <div class="row">
-                <div class="col-6">
-                  <input
-                    type="submit"
-                    value="login"
-                    class="btn btn-primary px-4"
-                  />
-                  <input type="hidden" name="next" value="{{ next }}" />
-                </div>
-                <div class="col-6 text-right">
-                  <a
-                    href=" {% url 'password_reset' %} "
-                    type="button"
-                    class="btn btn-link px-0"
-                  >
-                    Forgot password?</a
-                  >
+                  <h6 class="h5 mb-0">Welcome back!</h6>
+                  <p class="text-muted mt-2 mb-5">
+                    Enter your email address and password to access admin panel.
+                  </p>
+
+                  <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      {{ form.username | as_crispy_field}}
+                    </div>
+                    <div class="form-group mb-5">
+                      {{ form.password| as_crispy_field}}
+                    </div>
+                    <input type="submit" class="btn btn-theme" value="Login" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                    <a
+                      href="{% url 'password_reset' %} "
+                      class="forgot-link float-right text-primary"
+                      >Forgot password?</a
+                    >
+                  </form>
                 </div>
               </div>
-            </form>
-          </div>
-        </div>
-        <div
-          class="card text-white bg-primary py-5 d-md-down-none"
-          style="width: 44%"
-        >
-          <div class="card-body text-center">
-            <div>
-              <h2>Sign up</h2>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </p>
-              <a
-                href="{% url 'accounts:sign_up' %}"
-                type="button"
-                class="btn btn-primary active mt-3"
-              >
-                Register Now!
-              </a>
+
+              <div class="col-lg-6 d-none d-lg-inline-block">
+                <div class="account-block rounded-right">
+                  <div class="overlay rounded-right"></div>
+                  <div class="account-testimonial">
+                    <h4 class="text-white mb-4">This beautiful theme yours!</h4>
+                    <p class="lead text-white">
+                      "Best investment i made for a long time. Can only
+                      recommend it for other users."
+                    </p>
+                    <p>- Admin User</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+          <!-- end card-body -->
         </div>
+        <!-- end card -->
+
+        <p class="text-muted text-center mt-3 mb-0">
+          Don't have an account?
+          <a href="{% url 'accounts:sign_up' %}" class="text-primary ml-1"
+            >register</a
+          >
+        </p>
+
+        <!-- end row -->
       </div>
+      <!-- end col -->
     </div>
+    <!-- Row -->
   </div>
+  <!-- ------------------------------------------------------------------------------ -->
 </div>
-<!-- ------------------------------------------------------------------------------ -->
 {% endblock %}
