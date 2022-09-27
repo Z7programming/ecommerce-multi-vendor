@@ -1,38 +1,149 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en ">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <meta charset="UTF-8  " />
+    <meta name="viewport" content="width=device-width, initial-scale=1 " />
     <meta name="description" content="{{description}}" />
     <meta name="keywords" content="{{keywords}}" />
-    <link
-      rel="shortcut icon"
-      href="{% static 'images/favicon.png' %}"
-      type="image/x-icon"
-    />
-    <title>{{title}}</title>
-    <!-- ref css -->
-    <link rel="stylesheet" href="{% static 'references/css/all.min.css' %}" />
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="images/icons/favicon.png" />
+    <!--===============================================================================================-->
     <link
       rel="stylesheet"
-      href="{% static 'references/css/bootstrap.min.css' %}"
+      type="text/css"
+      href="{% static 'fontAwsome/css/all.min.css' %} "
     />
-    <!-- custum css -->
-    {% block style %} {% endblock style %}
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'bootstrap/bootstrap.min.css' %} "
+    />
+    <!--===============================================================================================-->
+    <!-- <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'fonts/font-awesome.min.css' %} "
+    /> -->
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'fonts/material-design-iconic-font.min.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'fonts/icon-font.min.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/animate.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/hamburgers.min.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/animsition.min.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/select2.min.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/daterangepicker.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/slick.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/magnific-popup.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'vendor/perfect-scrollbar.css' %} "
+    />
+    <!--===============================================================================================-->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/util.css' %} "
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/main.css' %} "
+    />
+    <!--===============================================================================================-->
   </head>
-  <body>
-    <!-- ------------- Header -------------  -->
-    {% block header %} {% endblock header %}
-    <!-- ------------- Body -------------  -->
-    {% block body %} {% endblock body %}
-    <!-- ------------- Footer -------------  -->
-    {% block footer %} {% endblock footer %}
-    <!-- ref js -->
-    <script src="{% static 'references/js/all.min.js' %}"></script>
-    <script src="{% static 'references/js/bootstrap.bundle.min.js' %}"></script>
-    <!-- custum js -->
-    {% block script %} {% endblock script %}
+  {% block content %}
+  <!-- ---------------  -->
+  {% endblock content %}
+  <!-- ---------------  -->
+  {% include 'ref/header.html' %}
+  <!-- ---------------  -->
+  <body class="animsition">
+    <!-- ---------------  -->
+    {% block body %}
+    <!-- ---------------  -->
+    {% endblock body %}
+    <!-- ---------------  -->
+    {% include 'ref/footer.html' %}
+    <!-- ---------------  -->
+    {% include 'ref/back-to-top.html' %}
   </body>
+  <!--===============================================================================================-->
+  <script src="{% static 'fontAwsome/js/all.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/jquery-3.2.1.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/animsition.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'bootstrap/popper.js' %}"></script>
+  <script src="{% static 'bootstrap/bootstrap.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/select2.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/moment.min.js' %}"></script>
+  <script src="{% static 'vendor/daterangepicker.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/slick.min.js' %}"></script>
+  <script src="{% static 'js/slick-custom.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/parallax100.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/jquery.magnific-popup.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/isotope.pkgd.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/sweetalert.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'vendor/perfect-scrollbar.min.js' %}"></script>
+  <!--===============================================================================================-->
+  <script src="{% static 'js/main.js' %}"></script> 
+  {% block scripts %} {% endblock scripts%}
 </html>

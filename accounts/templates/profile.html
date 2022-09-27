@@ -1,9 +1,13 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %}
+<!-- ------------- Header -------------  -->
+{% block header %}
+<!-- --------------------------------- -->
+{% include 'nav.html' %}
+<!-- --------------------------------- -->
+{% endblock header %}
 <!-- ------------- -->
 {% block body %}
-
 <!-- ------------- -->
-
 <div class="container p-3">
   <div class="row flex-lg-nowrap">
     <div class="col">
@@ -125,7 +129,7 @@
             </form>
           </div>
         </div>
-        <!-- ---------- middel---------  -->
+        <!-- ---------- End---------  -->
         <div class="col-12 col-md-3 mb-3">
           <div class="card mb-3">
             <div class="card-body">
@@ -151,10 +155,17 @@
               <div class="px-xl-3">
                 <a
                   href=" {% url 'logout' %} "
-                  class="btn btn-block btn-secondary"
+                  class="btn btn-block btn-danger my-1"
                 >
                   <i class="fa fa-sign-out"></i>
                   <span>Logout</span>
+                </a>
+                <a
+                  href=" {% url 'accounts:sign_up' %}"
+                  class="btn btn-block btn-warning my-1"
+                >
+                  <i class="fa fa-sign-out"></i>
+                  <span>Create new account</span>
                 </a>
               </div>
             </div>
@@ -169,7 +180,6 @@
 {% endblock body %}
 <!-- ------------- -->
 {% block footer %}
-<hr />
 <!-- ------------- -->
 {% include 'footer.html' %}
 <!-- ------------- -->

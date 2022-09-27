@@ -1,0 +1,122 @@
+{% extends 'base-dash.html' %} {% load static %} {% block content %}
+<h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+  New Product
+</h2>
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800">
+    <div class="grid gap-6 md:grid-cols-2">
+      <!-- ------ title -----  -->
+      <label class="block text-sm">
+        <span class="text-gray-700 dark:text-gray-400">Title</span>
+        {{form_product.titel}}
+      </label>
+      <!-- ------ category -----  -->
+      <label class="block mt-4 text-sm">
+        <span class="text-gray-700 dark:text-gray-400"> category </span>
+        <!-- <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"></select> -->
+        {{form_product.category}}
+      </label>
+    </div>
+    <div class="grid gap-6 md:grid-cols-2">
+      <!-- ------ price -----  -->
+      <label class="block text-sm">
+        <span class="text-gray-700 dark:text-gray-400">Price</span>
+        {{form_product.price}}
+      </label>
+      <!-- ------ Stock -----  -->
+      <label class="block text-sm">
+        <span class="text-gray-700 dark:text-gray-400">Stockag</span>
+        {{form_product.stockag}}
+      </label>
+    </div>
+    <!-- ------ Images -----  -->
+    <span class="text-gray-700 dark:text-gray-400"> Images </span>
+    <div style="overflow: hidden; width: 1px; height: 1px">
+      {{form_product_imgs.image}}
+    </div>
+    <div
+      id="showimage"
+      class="block mt-4"
+      style="display: flex; flex-wrap: wrap"
+    >
+      <label
+        class="dark:border-gray-600"
+        for="id_image"
+        style="
+          width: 100px;
+          height: 100px;
+          padding: 2px;
+          cursor: pointer;
+          font-size: 30px;
+          line-height: 100px;
+          color: whitesmoke;
+          text-align: center;
+          margin: 10px;
+          border-radius: 10px;
+          overflow: hidden;
+          position: relative;
+        "
+      >
+        +
+      </label>
+      {% if prod_images %} {% for image in prod_images %}
+      <a
+        href=""
+        style="
+          width: 100px;
+          height: 100px;
+          padding: 2px;
+          margin: 10px;
+          border-radius: 10px;
+          overflow: hidden;
+          position: relative;
+        "
+        ><img
+          src="{{image.image.url}}"
+          style="width: 100px; height: 100px; border-radius: 10px"
+      /></a>
+      {% endfor %} {% endif%}
+    </div>
+    <!-- ------ Description -----  -->
+    <label class="block mt-4 text-sm">
+      <span class="text-gray-700 dark:text-gray-400">Description</span>
+      {{form_product.description}}
+    </label>
+    <!-- ------ Variabels -----  -->
+    <div class="grid gap-6 md:grid-cols-2">
+      <div>Sizes</div>
+      <div>colors</div>
+    </div>
+    <!-- ------ Meta title  -----  -->
+    <label class="block mt-4 text-sm">
+      <span class="text-gray-700 dark:text-gray-400"> Meta Title </span>
+      {{form_product.meta_titel}}
+      <span class="text-xs text-gray-600 dark:text-gray-400">
+        this meta title for help your page SEO. Not requared
+      </span>
+    </label>
+    <!-- ------ Meta Description  -----  -->
+    <label class="block mt-4 text-sm">
+      <span class="text-gray-700 dark:text-gray-400"> Meta Description </span>
+      {{form_product.meta_description}}
+      <span class="text-xs text-gray-600 dark:text-gray-400">
+        this meta Description for help your page SEO. Not requared
+      </span>
+    </label>
+    <div>
+      <input
+        type="submit"
+        value="Save"
+        class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+        style="cursor: pointer"
+      />
+    </div>
+  </div>
+  <!-- -------------------  -->
+</form>
+{% endblock content %}
+<!-- -------------------  -->
+{% block script %}
+<script src="{% static 'assets/js/new-product.js'%}"></script>
+{% endblock script %}

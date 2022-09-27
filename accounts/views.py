@@ -30,7 +30,7 @@ def profile(request):
     userLogin = request.user
     prof = Profile.objects.get(user=userLogin)
     if request.method == 'POST':
-        user_form = userForm(request.POST,   instance=userLogin)
+        user_form = userForm(request.POST,  instance=userLogin)
         prof_form = profileForm(request.POST, request.FILES, instance=prof)
         if user_form.is_valid() and prof_form.is_valid():
             user_form.save()

@@ -34,8 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     # --- My apps ---
     'Home',
-    'vendor_dach',
-    'admin_dach',
+    'dashboard',
     # --- installed apps ---
     'accounts',
     "crispy_forms",
@@ -53,12 +52,12 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 LOGIN_REDIRECT_URL = '/'
 
 
-# in views befour any def must be login 
+# in views befour any def must be login
 # from django.contrib.auth.decorators import login_required
 
 
 MIDDLEWARE = [
- 
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -148,7 +147,6 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 
 
 # test send emil to my condole

@@ -1,6 +1,5 @@
-from unicodedata import category
 from django.contrib import admin
-from .models import Category ,Product
+from .models import Category, Product, Product_images
 # Register your models here.
- 
-admin.site.register([Category , Product])
+
+admin.site.register([Category, Product, Product_images])
