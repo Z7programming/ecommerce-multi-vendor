@@ -1,4 +1,14 @@
 {% extends 'base-dash.html' %} {% load static %} {% block content %}
+<style>
+  .img_show {
+    margin: 10px;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.5s;
+  }
+</style>
 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
   New Product
 </h2>
@@ -46,7 +56,6 @@
         style="
           width: 100px;
           height: 100px;
-          padding: 2px;
           cursor: pointer;
           font-size: 30px;
           line-height: 100px;
@@ -54,28 +63,17 @@
           text-align: center;
           margin: 10px;
           border-radius: 10px;
-          overflow: hidden;
-          position: relative;
         "
       >
         +
       </label>
       {% if prod_images %} {% for image in prod_images %}
-      <a
-        href=""
-        style="
-          width: 100px;
-          height: 100px;
-          padding: 2px;
-          margin: 10px;
-          border-radius: 10px;
-          overflow: hidden;
-          position: relative;
-        "
-        ><img
-          src="{{image.image.url}}"
-          style="width: 100px; height: 100px; border-radius: 10px"
-      /></a>
+      <img
+        class="img_show img_show_id"
+        data-link="{% url 'dashboard:del_img' image.id %}"
+        id="{{image.id}}"
+        src="{{image.image.url}}"
+      />
       {% endfor %} {% endif%}
     </div>
     <!-- ------ Description -----  -->
@@ -119,4 +117,24 @@
 <!-- -------------------  -->
 {% block script %}
 <script src="{% static 'assets/js/new-product.js'%}"></script>
+<script>
+  var token = $('input[name="csrfmiddlewaretoken"]').prop("value");
+  $(".img_show_id").on("click", (e) => {
+    ele = e.target;
+    $.ajax({
+      headers: { "X-CSRFToken": token },
+      url: ele.dataset.link,
+      type: "POST",
+      dataType: "json",
+      success: function (res) {
+        if (res.status == "ok") {
+          ele.remove();
+        }
+      },
+      error: function (err) {
+        console.log("error: ", err);
+      },
+    });
+  });
+</script>
 {% endblock script %}

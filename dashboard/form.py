@@ -29,8 +29,8 @@ class Product_form(forms.ModelForm):
 
 
 class Product_images_form(forms.ModelForm):
-    image = forms.ImageField(
-        widget=forms.FileInput(attrs={'multiple': True, }))
+    image = forms.ImageField(required=False,
+                             widget=forms.FileInput(attrs={'multiple': True, }))
 
     class Meta:
         model = Product_images

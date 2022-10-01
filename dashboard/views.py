@@ -1,6 +1,8 @@
 
 from accounts.models import Profile
-from django.shortcuts import render, redirect
+from django.http import JsonResponse
+from django.shortcuts import redirect, render
+from django.views.decorators.csrf import csrf_exempt
 from Home.models import Category, Product, Product_images
 
 from .form import Product_form, Product_images_form
@@ -18,9 +20,9 @@ for round in range(3):
             ind2 = Product_images_unique.index(y2)
             if (ind1 != ind2) and (y1.slug == y2.slug):
                 Product_images_unique.pop(ind2)
+
+
 #  ------------- Dashboard -----------------
-
-
 def index(request):
     ctxt = {
         # normal
@@ -33,9 +35,9 @@ def index(request):
         'profile': Profile.objects.get(user=(request.user)),
     }
     return render(request, 'index.html', ctxt)
+
+
 #  ------------- Products -----------------
-
-
 def products(request):
     ctxt = {
         # normal
@@ -48,9 +50,9 @@ def products(request):
         'profile': Profile.objects.get(user=(request.user)),
     }
     return render(request, 'products.html', ctxt)
+
+
 #  ------------- New Product -----------------
-
-
 def new_product(request):
     if request.method == 'POST':
         form_product = Product_form(request.POST)
@@ -84,15 +86,27 @@ def new_product(request):
         'profile': Profile.objects.get(user=(request.user)),
     }
     return render(request, 'new-product.html', ctxt)
+
+
 #  ------------- delete Product -----------------
-
-
+@csrf_exempt
 def delete_product(request, id):
-    Product.objects.all().filter(id=id).delete()
-    return redirect('dashboard:products')
+    Product.objects.get(id=id).delete()
+    ctxt = {
+        "status": "ok"
+    }
+    return JsonResponse(ctxt)
+
+
+#  ------------- delete Image -----------------
+def del_img(request, id):
+    Product_images.objects.get(id=id).delete()
+    ctxt = {
+        "status": "ok"}
+    return JsonResponse(ctxt)
+
+
 #  ------------- Edit Product -----------------
-
-
 def edit_product(request, id):
     prod = Product.objects.get(id=id)
     prod_images = Product_images.objects.all().filter(slug=prod.slug)
@@ -130,26 +144,4 @@ def edit_product(request, id):
         'user': request.user,
         'profile': Profile.objects.get(user=(request.user)),
     }
-
     return render(request, 'new-product.html', ctxt)
-
-
-""" 
-def home(request):
-    user = request.user
-    ctxt = {
-        # normal
-        'title': 'home',
-        'description': 'this store for shopping',
-        'keywords': 'shoping store ecom',
-        # from db
-        'categories': Category.objects.all(),
-        'products': Product.objects.all(),
-        'prod_images':  Product_images.objects.all(),
-        'prod_images_unice': newList,
-        # user
-        'user': user,
-        'profile': Profile.objects.get(user=user),
-    }
-    return render(request, 'home.html', ctxt)
-"""
